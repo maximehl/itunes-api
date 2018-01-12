@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iTunes API</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="iTunes-javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="iTunes-style.css">
+</head>
+<body>
+<div id="headerDiv">
+    <h3>Artist Search</h3>
+    Artist Name: <input type="text" title="Enter the artist name."
+           id="artistName" onfocus="generateSuggestions()" oninput="hideResults()" list="suggestions">
+    <datalist id="suggestions"></datalist>
+    <br>
+    Number of results: <span id="numResults">50</span>
+    <input title="Select the number of results you would like." type="range" min="5"
+           max="50" value="50" step="5" oninput="updateRange(this.value); hideResults()">
+    <br>
+    <button onclick="searchButtonClicked()">Search</button>
+</div>
+
+<div id="tracksContainer" class="collapsible">
+    <h3>Results</h3>
+    <ul id="tracks">
+        <li id='errorMessage'><h3>This search returned 0 results.</h3></li>
+    </ul>
+</div>
+
+</body>
+</html>

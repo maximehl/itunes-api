@@ -1,0 +1,79 @@
+body{
+    font-family: Arial, sans-serif;
+}
+
+h3, h5{
+    text-align:center;
+    /*font-size: 20pt;*/
+    margin:5px;
+}
+
+a{
+    color: #000;
+    text-decoration: none;
+}
+
+img{
+    width:100px;
+}
+
+div{
+    text-align: center;
+    background-color: lightgrey;
+    border-radius: 20px;
+    padding:20px;
+    margin: 20px 60px 0;
+}
+
+ul{
+    padding:0;
+    margin:0;
+}
+li{
+    background-color: darkgrey;
+    border-radius: 15px;
+    padding: 10px;
+    list-style-type: none;
+    display: inline-block;
+    margin:15px;
+    max-width: 100px;
+    cursor: pointer;
+    transition:0.5s;
+}
+li:hover{
+    background-color: #828282;
+}
+
+#errorMessage{
+    max-width: initial;
+    cursor: default;
+}
+
+.information{
+    background-color: rgba(38, 38, 38, 0.83);
+    color: white;
+    font-size: 10pt;
+    font-family:Arial Narrow, Arial, sans-serif;
+    position: relative;
+    /*transition: 0.4s;*/
+    display: block;
+    border-radius: 10px 10px 0 0;
+}
+.collapsible{
+    overflow: hidden;
+    height:0;
+    top:0;
+}
+
+input, button{
+    outline:none;
+}
+
+#numResults{
+    display: inline-block;
+    width:20px;
+}
+
+#tracksContainer{
+    transition: height 0.5s ease-in-out;
+}
