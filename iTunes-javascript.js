@@ -74,7 +74,7 @@ function programGo(jsonData){
     }
     setTimeout(function(){
         tracksContainer.css({'height': trackList.height() + H3HEIGHT});
-    }, 100);
+    }, 400);
 }
 
 var H3HEIGHT;
@@ -89,9 +89,9 @@ $(document).ready(function(){
     tracksContainer.on("mouseenter", function() {
         showResults();
     });
-    tracksContainer.on("mouseleave", function(){
+    /*tracksContainer.on("mouseleave", function(){
         hideResults();
-    });
+    });*/
 });
 
 function showResults(){
@@ -119,11 +119,11 @@ function buildObject(trackObject){
         var clonedSpan = infoSpan.clone().css({'height': 'auto'}).appendTo(this);
         var heightNeeded = clonedSpan.height();
         clonedSpan.remove();
-        infoSpan.animate({'top': -1*heightNeeded, 'height': heightNeeded, 'marginBottom': -1*heightNeeded}, 400);
+        infoSpan.animate({'top': -1*heightNeeded, 'height': heightNeeded, 'marginBottom': -1*heightNeeded}, 300);
     });
     pageObject.on("mouseleave", function(){
         var infoSpan = $(this).find('.information');
-        infoSpan.animate({'top': 0, 'height': 0, 'marginBottom': 0}, 400);
+        infoSpan.animate({'top': 0, 'height': 0, 'marginBottom': 0}, 300);
     });
     trackList.append(pageObject);
 }
