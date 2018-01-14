@@ -57,8 +57,19 @@ function updateRange(rangeValue){
 }
 
 function programGo(jsonData){
-    trackList.empty();
-    if(jsonData.resultCount===0){
+	if(parseInt(tracksContainer.css("height"))!==H3HEIGHT){
+		hideResults();
+		setTimeout(function(){
+			programGo2(jsonData);
+		}, 500);
+	}else{
+		programGo2(jsonData);
+	}
+}
+
+function programGo2(jsonData){
+	trackList.empty();
+	if(jsonData.resultCount===0){
         var errorMessage = $("<li id='errorMessage'><h3>This search returned 0 results.</h3></li>");
         trackList.append(errorMessage);
         showResults();
@@ -87,7 +98,9 @@ $(document).ready(function(){
 
     tracksContainer.css({"height": H3HEIGHT});
     tracksContainer.on("mouseenter", function() {
-        showResults();
+    	if(trackList.children().length!==1){
+    		showResults();
+    	}
     });
     /*tracksContainer.on("mouseleave", function(){
         hideResults();
