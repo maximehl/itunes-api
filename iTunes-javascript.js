@@ -1,3 +1,11 @@
+$(document).ready(function(){
+    $("input").on("keypress", function(){
+        if(event.keyCode===13){
+            searchButtonClicked();
+        }
+    });
+});
+
 function searchButtonClicked(){
     var searchTerm = document.getElementById("artistName").value;
     var searchURL = 'https://itunes.apple.com/search?term=';
