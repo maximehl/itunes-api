@@ -57,8 +57,19 @@ function updateRange(rangeValue){
 }
 
 function programGo(jsonData){
-    trackList.empty();
-    if(jsonData.resultCount===0){
+	if(parseInt(tracksContainer.css("height"))!==H3HEIGHT){
+		hideResults();
+		setTimeout(function(){
+			programGo2(jsonData);
+		}, 500);
+	}else{
+		programGo2(jsonData);
+	}
+}
+
+function programGo2(jsonData){
+	trackList.empty();
+	if(jsonData.resultCount===0){
         var errorMessage = $("<li id='errorMessage'><h3>This search returned 0 results.</h3></li>");
         trackList.append(errorMessage);
         showResults();
@@ -74,7 +85,7 @@ function programGo(jsonData){
     }
     setTimeout(function(){
         tracksContainer.css({'height': trackList.height() + H3HEIGHT});
-    }, 100);
+    }, 400);
 }
 
 var H3HEIGHT;
@@ -87,11 +98,13 @@ $(document).ready(function(){
 
     tracksContainer.css({"height": H3HEIGHT});
     tracksContainer.on("mouseenter", function() {
-        showResults();
+    	if(trackList.children().length!==1){
+    		showResults();
+    	}
     });
-    tracksContainer.on("mouseleave", function(){
+    /*tracksContainer.on("mouseleave", function(){
         hideResults();
-    });
+    });*/
 });
 
 function showResults(){
@@ -111,7 +124,7 @@ function buildObject(trackObject){
     trackData = [trackObject.trackName, trackObject.artistName, trackObject.trackPrice,
         convertTrackTime(trackObject.trackTimeMillis), trackObject.artworkUrl100, trackObject.trackViewUrl, 0];
     trackData[6] = findFeaturedArtists();
-    var pageObject = $("<li><a href='" + trackData[5] + "'><h5>" + trackData[0]+ "</h5><img src='" + trackData[4]
+    var pageObject = $("<li><a href='" + trackData[5] + "' target='_'><h5>" + trackData[0]+ "</h5><img src='" + trackData[4]
         + "'><br><span class='information collapsible'>Artist: " + trackData[1] + trackData[6] + "<br>Length: "
         + trackData[3] + "<br>Price: $" + trackData[2] + "</span></a></li>");
     pageObject.on("mouseenter", function(){
@@ -119,11 +132,11 @@ function buildObject(trackObject){
         var clonedSpan = infoSpan.clone().css({'height': 'auto'}).appendTo(this);
         var heightNeeded = clonedSpan.height();
         clonedSpan.remove();
-        infoSpan.animate({'top': -1*heightNeeded, 'height': heightNeeded, 'marginBottom': -1*heightNeeded}, 400);
+        infoSpan.animate({'top': -1*heightNeeded, 'height': heightNeeded, 'marginBottom': -1*heightNeeded}, 300);
     });
     pageObject.on("mouseleave", function(){
         var infoSpan = $(this).find('.information');
-        infoSpan.animate({'top': 0, 'height': 0, 'marginBottom': 0}, 400);
+        infoSpan.animate({'top': 0, 'height': 0, 'marginBottom': 0}, 300);
     });
     trackList.append(pageObject);
 }
